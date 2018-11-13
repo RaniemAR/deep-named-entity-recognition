@@ -9,7 +9,7 @@ TAGGED_NEWS_FILEPATH = "news_tagged_data.txt"
 if __name__ == "__main__":
 
     if len(sys.argv) < 2:
-        print "ERROR: need model destination filepath!"
+        print ("ERROR: need model destination filepath!")
         sys.exit(1)
 
     if len(sys.argv) > 2:
@@ -23,23 +23,23 @@ if __name__ == "__main__":
         ep_arg = 20
 
     # Read the data
-    print ">> Initializing data..."
+    print (">> Initializing data...")
     reader = DataUtil(WORDVEC_FILEPATH, TAGGED_NEWS_FILEPATH)
     X,Y = reader.get_data()
-    print X.shape
-    print Y.shape
+    print (X.shape)
+    print (Y.shape)
 
     # Train the model
-    print ">> Training model... epochs = {0}, layers = {1}".format(ep_arg,layer_arg)
+    print (">> Training model... epochs = {0}, layers = {1}".format(ep_arg,layer_arg))
     nermodel = NERModel(reader)
     nermodel.train(epochs=ep_arg, layers=layer_arg)
 
     # Evaluate the model
-    print ">> Evaluating model..."
+    print(">> Evaluating model...")
     nermodel.evaluate()
 
     # Save the model
-    print ">> Saving model..."
+    print (">> Saving model...")
     nermodel.save(sys.argv[1])
 
-    print ">> Done."
+    print (">> Done.")

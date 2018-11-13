@@ -87,7 +87,7 @@ class DataUtil:
         for words, tags in raw_news_data:
             elem_wordvecs, elem_tags = [], []
             
-            for ix in xrange(len(words)):
+            for ix in range(len(words)):
                 w = words[ix]
                 t = tags[ix]
                 if w in self.word_to_ix_map:

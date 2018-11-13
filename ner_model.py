@@ -42,7 +42,7 @@ class NERModel:
         self.model.save(filepath)
 
     def print_summary (self):
-        print self.model.summary()
+        print (self.model.summary())
 
     def train (self, test_split=0.2, epochs=20, batch=50, dropout=0.2, \
                                             eg_alpha=0.0, units=150, layers=1):
@@ -53,8 +53,8 @@ class NERModel:
         self.test_X = self.all_X[~test_split_mask]
         self.test_Y = self.all_Y[~test_split_mask]
 
-        print self.train_X.shape
-        print self.train_Y.shape
+        print (self.train_X.shape)
+        print (self.train_Y.shape)
 
         self.model = Sequential()
         reg_alpha = 0.000
@@ -75,7 +75,7 @@ class NERModel:
                                         W_regularizer=l2(reg_alpha), \
                                         b_regularizer=l2(reg_alpha))))
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-        print self.model.summary()
+        print (self.model.summary())
 
         self.model.fit(self.train_X, self.train_Y, nb_epoch=epochs, batch_size=batch)
 
@@ -106,4 +106,4 @@ class NERModel:
 
     def evaluate (self):
         scores = self.model.evaluate(self.test_X, self.test_Y, verbose=0)
-        print "Accuracy: %.2f%%" % (scores[1]*100)
+        print ("Accuracy: %.2f%%" % (scores[1]*100))
